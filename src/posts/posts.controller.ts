@@ -2,6 +2,7 @@ import * as express from 'express';
 import Controller from '../interfaces/controller.interface';
 import Post from './post.interface';
 import postModel from './posts.model';
+import PostNotFoundException from '../exceptions/PostNotFoundException';
 
 class PostsController implements Controller {
 public path = '/posts';
@@ -27,12 +28,17 @@ response.send(posts);
 });
 }
 
-private getPostById = (request: express.Request, response: express.Response) => {
+private getPostById = (request: express.Request, response: express.Response, next:express.NextFunction) => {
 const id = request.params.id;
 this.post.findById(id)
-.then((post) => {
-response.send(post);
-});
+            .then((post) => {
+                    if(post){
+                        response.send(post);
+                    }
+                    else{
+                        next(new PostNotFoundException(id))
+                    }
+            });
 }
 private modifyPost = (request: express.Request, response: express.Response) => {
     const id = request.params.id;
