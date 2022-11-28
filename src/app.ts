@@ -1,6 +1,6 @@
 import * as bodyParser from 'body-parser';
 import  express from 'express';
-import * as mongoose from 'mongoose';
+import  mongoose from 'mongoose';
 import Controller from './interfaces/controller.interface';
 
 class App {
@@ -9,7 +9,7 @@ class App {
     constructor(controllers: Controller[]) {
             this.app = express();
 
-            this.connectToTheDatabase();
+            this.connectToTheDatabase().then(_=>console.log('connected')).catch(err => console.log(err));
             this.initializeMiddlewares();
             this.initializeControllers(controllers);
     }
@@ -30,18 +30,11 @@ class App {
         });
     }
 
-    private   connectToTheDatabase() {
+    private  async  connectToTheDatabase() {
         const {MONGO_USER,MONGO_PASSWORD,MONGO_PATH,DATABASENAME} = process.env;
         console.log({MONGO_USER,MONGO_PASSWORD,MONGO_PATH,DATABASENAME})
-       // mongoose.connect(`mongodb://${MONGO_PATH}/${DATABASENAME}`);
-        try{
-      //await mongoose.connect(MONGO_PATH as string, {     dbName:DATABASENAME      });
-      mongoose.connect(`mongodb://${MONGO_PATH}/${DATABASENAME}`);
-      console.log('connected to mongodb')
-    }
-    catch(e){
-        console.log('error     ---',e)
-    }
+        await mongoose.connect('mongodb://0.0.0.0:27017/eshop').catch(err => console.log(err));
+    
     }
 }
 
