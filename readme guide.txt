@@ -8,3 +8,7 @@ npm i class-validator
 npm i class-transformer
 npm install bcrypt
 npm install --save-dev @types/bcrypt
+npm install jsonwebtoken
+npm install --save-dev @types/jsonwebtoken
+npm install cookie-parser
+npm install --save-dev @types/cookie-parser
