@@ -33,4 +33,5 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+tsconfig.json
 readme guide.txt
