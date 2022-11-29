@@ -9,6 +9,11 @@ class CreatePostDto {
  
   @IsString()
   public title: string;
+  constructor (author: string,content: string,title: string){
+      this.author=author;
+      this.title=title;
+      this.content=content;
+  }
 }
  
 export default CreatePostDto;
