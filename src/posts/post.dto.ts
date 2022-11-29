@@ -10,7 +10,7 @@ class CreatePostDto {
   @IsString()
   public title: string;
 
-  constructor(private _Dto:CreatePostDto ) { 
+  constructor( _Dto:CreatePostDto ) { 
     // Initialization inside the constructor
     this.author =_Dto.author;
     this.title =_Dto.title;
