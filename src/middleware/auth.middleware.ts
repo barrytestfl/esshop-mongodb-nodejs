@@ -15,7 +15,7 @@ async function authMiddleware(request: RequestWithUser, response: Response, next
       const id = verificationResponse._id;
       const user = await userModel.findById(id);
       if (user) {
-        request.user = user;
+        //request.user = user;
         next();
       } else {
         next(new WrongAuthenticationTokenException());
