@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "target": "ES6",
+    "target": "es2017",
     "outDir": "./dist",
-    "baseUrl": "./src",    
+    "baseUrl": "./src",
     "alwaysStrict": true,
-    "noImplicitAny": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": [
     "src/**/*.ts"
