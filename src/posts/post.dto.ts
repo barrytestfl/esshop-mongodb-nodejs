@@ -1,6 +1,5 @@
-//import { IsString } from 'class-validator';
-import { DataTransferObject, IsString, Length, MinLength } from 'data-transfer-object';
-
+import { IsString } from 'class-validator';
+ 
 class CreatePostDto {
   @IsString()
   public author!: string;
