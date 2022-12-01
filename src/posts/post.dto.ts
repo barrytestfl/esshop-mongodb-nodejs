@@ -1,19 +1,16 @@
-import { IsString } from 'class-validator';
- 
+//import { IsString } from 'class-validator';
+import { DataTransferObject, IsString, Length, MinLength } from 'data-transfer-object';
+
 class CreatePostDto {
   @IsString()
-  public author: string;
+  public author!: string;
+ 
+  @IsString()  
+  public content!: string;
  
   @IsString()
-  public content: string;
- 
-  @IsString()
-  public title: string;
-   constructor(){
-    this.author="";
-    this.content="";
-    this.title="";
-   }
+  public title: string='';
+    
 }
  
 export default CreatePostDto;

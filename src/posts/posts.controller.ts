@@ -6,7 +6,7 @@ import PostNotFoundException from '../exceptions/PostNotFoundException';
 import validationMiddleware from '../middleware/validation.middleware';
 import CreatePostDto from './post.dto';
 
-import authMiddleware from '../middleware/auth.middleware';
+//import authMiddleware from '../middleware/auth.middleware';
 
 class PostsController implements Controller {
 public path = '/posts';
