@@ -1,4 +1,4 @@
-import * as express from 'express';
+import express from 'express';
 import Controller from '../interfaces/controller.interface';
 import Post from './post.interface';
 import postModel from './posts.model';
@@ -22,7 +22,7 @@ private initializeRoutes() {
     
 this.router.get(this.path,this.getAllPosts);
 this.router.get(`${this.path}/:id`, this.getPostById);
-this.router.patch(`${this.path}/:id`,validationMiddleware<CreatePostDto>(CreatePostDto, true), this.modifyPost);
+this.router.patch(`${this.path}/:id`,validationMiddleware(CreatePostDto), this.modifyPost);
 this.router.delete(`${this.path}/:id`, this.deletePost);
 //this.router.post(this.path, validationMiddleware(CreatePostDto),this.createPost);
 }
