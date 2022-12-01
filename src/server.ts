@@ -8,7 +8,7 @@ validateEnv();
 
 const app = new App(
     [
-        new AuthenticationController(),
+       // new AuthenticationController(),
         new PostsController(),
     ],
 );
