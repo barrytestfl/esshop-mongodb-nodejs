@@ -32,7 +32,7 @@ this.router.post(this.path, validationMiddleware(CreatePostDto),this.createPost)
 private getAllPosts = (request: express.Request, response: express.Response) => {
 this.post.find()
 .then((posts) => {
-response.send(posts);
+    response.send(posts);
 });
 }
 
@@ -40,12 +40,10 @@ private getPostById = (request: express.Request, response: express.Response, nex
 const id = request.params.id;
 this.post.findById(id)
             .then((post) => {
-                    if(post){
                         response.send(post);
-                    }
-                    else{
-                        next(new PostNotFoundException(id))
-                    }
+            }).catch((err)=>{
+                console.log(err)
+                next(new PostNotFoundException(id))
             });
 }
 private modifyPost = (request: express.Request, response: express.Response) => {

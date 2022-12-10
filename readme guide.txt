@@ -1,5 +1,5 @@
 npm init -y
-npm install typescript express ts-node
+npm install  -g typescript express ts-node  nodemon 
 npm install body-parser
 npm i dotenv
 npm i mongoose
@@ -13,3 +13,7 @@ npm install jsonwebtoken
 npm install --save-dev @types/jsonwebtoken
 npm install cookie-parser
 npm install --save-dev @types/cookie-parser
+
+
+
+tsc --init:[با اینکار tsconfig.json ایجاد میشود. ]
