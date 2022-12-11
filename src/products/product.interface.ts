@@ -1,5 +1,4 @@
 import { ProductStatus,ProductType } from './../utils/enums';
-import IProductImage from './../ProductImages/productImage.interface';
 interface IProduct{
     ProductName:string;
     GroupId:string;
@@ -22,7 +21,7 @@ interface IProduct{
     MetaDescription:string;
     Garranty:string;
     ProductVideo:string;
-    Images:[IProductImage];
+    Images:[string];
     InStock:number;
     OrderQuantityLimit:number;
     Status:ProductStatus;    
