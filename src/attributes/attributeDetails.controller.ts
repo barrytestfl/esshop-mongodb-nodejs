@@ -8,7 +8,7 @@ import attributeDetailesModel from './attributesDetails.model';
 import attributeDetailesDTO from './attributeDetails.dto';
 
 class attributeDetailessController implements Controller {
-public path = '/attributeDetailess';
+public path = '/attributeDetailes';
 public router = express.Router();
 private attributeDetailes = attributeDetailesModel;
 

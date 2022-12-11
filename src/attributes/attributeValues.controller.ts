@@ -8,7 +8,7 @@ import attributeValuesModel from './attributeValues.model';
 import attributeValuesDTO from './attributeValues.dto';
 
 class attributeValuessController implements Controller {
-public path = '/attributeValuess';
+public path = '/attributeValues';
 public router = express.Router();
 private attributeValues = attributeValuesModel;
 
