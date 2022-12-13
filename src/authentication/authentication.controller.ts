@@ -24,20 +24,19 @@ class AuthenticationController implements Controller {
   }
  
   private registration = async (request: express.Request, response: express.Response, next:express.NextFunction) => {
+    
     const userData: CreateUserDto = request.body;
-    if (
-      await this.user.findOne({ email: userData.email })
-    ) {
-      next(new UserWithThatEmailAlreadyExistsException(userData.email));
-    } else {
-      const hashedPassword = await bcrypt.hash(userData.password, 10);
-      const user = await this.user.create({
-        ...userData,
-        password: hashedPassword,
-      });
-      user.password = 'undefined';
-      response.send(user);
+    try {
+    const {
+    cookie,
+    user,
+    } = await this.service.register(userData);
+    response.setHeader('Set-Cookie', [cookie]);
+    response.send(user);
+    } catch (error) {
+    next(error);
     }
+    
   }
  
   private loggingIn = async (request: express.Request, response: express.Response, next:express.NextFunction) => {
@@ -48,7 +47,7 @@ class AuthenticationController implements Controller {
     console.log('user.password',user)
     if (user) {
      
-      const isPasswordMatching = await bcrypt.compare(logInData.password, user.password);
+      const isPasswordMatching = await bcrypt.compare(logInData.password,user.get('password', null, { getters: false }));
       console.log('isPasswordMatching',isPasswordMatching)
       if (isPasswordMatching) {
         user.password = 'undefined';
