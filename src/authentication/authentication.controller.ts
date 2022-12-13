@@ -7,12 +7,13 @@ import validationMiddleware from '../middleware/validation.middleware';
 import CreateUserDto from '../users/user.dto';
 import userModel from './../users/user.model';
 import LogInDto from './logIn.dto';
- 
+ import AuthenticationService from './authentication.service'
 class AuthenticationController implements Controller {
   public path = '/auth';
   public router = express.Router();
   private user = userModel;
- 
+  private service=new AuthenticationService ();
+   
   constructor() {
     this.initializeRoutes();
   }
@@ -41,13 +42,20 @@ class AuthenticationController implements Controller {
  
   private loggingIn = async (request: express.Request, response: express.Response, next:express.NextFunction) => {
     const logInData: LogInDto = request.body;
+    console.log('body',logInData.email)
+    
     const user = await this.user.findOne({ email: logInData.email });
+    console.log('user.password',user)
     if (user) {
-      console.log('user.password',user.password)
+     
       const isPasswordMatching = await bcrypt.compare(logInData.password, user.password);
+      console.log('isPasswordMatching',isPasswordMatching)
       if (isPasswordMatching) {
         user.password = 'undefined';
+        const tokenData = this.service.createToken(user);
+        response.setHeader('Set-Cookie', [this.service.createCookie(tokenData)]);
         response.send(user);
+
       } else {
         next(new WrongCredentialsException());
       }

@@ -7,7 +7,7 @@ const groupSchema = new mongoose.Schema(
     GroupImage:String,
     MetaKeyword:String,
     MetaDescription:String,
-    Priority:String,
+    Priority:Number,
     Parent:{ type: mongoose.Types.ObjectId, ref: 'Group' }
   } 
   ,
@@ -22,7 +22,7 @@ groupSchema.virtual('childs',{
     ref: 'Group',
     localField: '_id',
     foreignField: 'Parent', 
-    
+    justOne:true
  })
  
 const groupModel = mongoose.model<IGroup & mongoose.Document>('Group', groupSchema);

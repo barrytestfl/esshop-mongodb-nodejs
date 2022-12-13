@@ -56,7 +56,7 @@ private modifyproductImage = (request: express.Request, response: express.Respon
     
     private createproductImage = (request: express.Request, response: express.Response) => {
     const productImageData: IproductImage = request.body;
-    const createdproductImage = new this.productImage(productImageData);
+    const createdproductImage = new this.productImage({...productImageData});
     createdproductImage.save()
     .then((savedproductImage) => {
     response.send(savedproductImage);

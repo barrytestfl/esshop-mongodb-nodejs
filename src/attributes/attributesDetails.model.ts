@@ -8,11 +8,27 @@ const attributesDetailsSchema = new mongoose.Schema(
     AttributeValueId:  { type: mongoose.Types.ObjectId, ref: 'AttributeValues' }, 
     Value:String
   } 
+  ,{ toJSON: { virtuals: true } }
 );
 
- 
-
- 
+attributesDetailsSchema.virtual('products',{
+  ref: 'Product',
+  localField: 'ProductId',
+  foreignField: '_id', 
+ justOne:true
+}); 
+attributesDetailsSchema.virtual('Attributes',{
+  ref: 'Attribute',
+  localField: 'AttributeId',
+  foreignField: '_id', 
+  justOne:true
+});
+attributesDetailsSchema.virtual('Values',{
+  ref: 'AttributeValues',
+  localField: 'AttributeValueId',
+  foreignField: '_id', 
+  justOne:true
+});
 const attributesDetailsModel = mongoose.model<IAttributesDetails & mongoose.Document>('AttributesDetails', attributesDetailsSchema);
 
 export default attributesDetailsModel;

@@ -56,7 +56,7 @@ private modifyattributeValues = (request: express.Request, response: express.Res
     
     private createattributeValues = (request: express.Request, response: express.Response) => {
     const attributeValuesData: IattributeValues = request.body;
-    const createdattributeValues = new this.attributeValues(attributeValuesData);
+    const createdattributeValues = new this.attributeValues({...attributeValuesData});
     createdattributeValues.save()
     .then((savedattributeValues) => {
     response.send(savedattributeValues);

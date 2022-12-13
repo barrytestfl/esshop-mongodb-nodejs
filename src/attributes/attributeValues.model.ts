@@ -7,7 +7,6 @@ const attributeValuesSchema = new mongoose.Schema(
     Value:String
   } 
 );
- 
 const attributeValuesModel = mongoose.model<IAttributeValues & mongoose.Document>('AttributeValues', attributeValuesSchema);
 
 export default attributeValuesModel;

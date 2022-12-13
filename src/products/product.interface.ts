@@ -8,11 +8,11 @@ interface IProduct{
     Reference:string;
     IsActive:boolean;
     Description:string;
-    Strengths:[string];
-    Weaknesses:[string];
-    Colors:[string];
+    Strengths?:[string];
+    Weaknesses?:[string];
+    Colors?: [string];
     Weight:number;
-    Size:{Width:number;Height:number};
+    Size?:{Width:number;Height:number};
     MetaTitle:string;
     Price:number;
     FinalPrice:number;
@@ -21,10 +21,10 @@ interface IProduct{
     MetaDescription:string;
     Garranty:string;
     ProductVideo:string;
-    Images:[string];
+    Images?:[string];
     InStock:number;
     OrderQuantityLimit:number;
-    Status:ProductStatus;    
-    ProductTypeName:ProductType;
+    Status:string;    
+    ProductTypeName:string;
 }
 export default IProduct;

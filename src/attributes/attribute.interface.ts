@@ -3,7 +3,7 @@ interface IAttribute{
     Name:string;
     Priority?:number;
     Description:string;
-    AttributeType:ProductAttributeType;
+    AttributeType:string;
     GroupId:string
 }
 export  default IAttribute;

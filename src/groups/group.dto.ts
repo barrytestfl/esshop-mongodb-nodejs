@@ -10,7 +10,7 @@ class GroupDTO {
   @IsString()
   public MetaDescription:string;
   @IsNumber()
-  public Priority:number;
+  public Priority?:number;
   @IsString()
   public Parent?:string 
 }

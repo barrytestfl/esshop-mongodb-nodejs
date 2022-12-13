@@ -3,9 +3,9 @@ import Controller from '../interfaces/controller.interface';
 import PostNotFoundException from '../exceptions/PostNotFoundException';
 import validationMiddleware from '../middleware/validation.middleware';
 import authMiddleware from '../middleware/auth.middleware';
-import Iattribute from './attribute.interface';
+import IAttribute from './attribute.interface'
+import AttributeDTO from './attribute.dto';
 import attributeModel from './attribute.model';
-import attributeDTO from './attribute.dto';
 
 class attributesController implements Controller {
 public path = '/attributes';
@@ -23,13 +23,13 @@ private initializeRoutes() {
     
 this.router.get(this.path,this.getAllattributes);
 this.router.get(`${this.path}/:id`, this.getattributeById);
-this.router.patch(`${this.path}/:id`,validationMiddleware(attributeDTO, true), this.modifyattribute);
+this.router.patch(`${this.path}/:id`,validationMiddleware(AttributeDTO, true), this.modifyattribute);
 this.router.delete(`${this.path}/:id`, this.deletePost);
-this.router.post(this.path, validationMiddleware(attributeDTO),this.createattribute);
+this.router.post(this.path, validationMiddleware(AttributeDTO),this.createattribute);
 }
 
 private getAllattributes = (request: express.Request, response: express.Response) => {
-this.attribute.find()
+this.attribute.find().populate('groups')
 .then((attributes) => {
     response.send(attributes);
 });
@@ -47,7 +47,7 @@ this.attribute.findById(id)
 }
 private modifyattribute = (request: express.Request, response: express.Response) => {
     const id = request.params.id;
-    const attributeData: Iattribute = request.body;
+    const attributeData: IAttribute = request.body;
     this.attribute.findByIdAndUpdate(id, attributeData, { new: true })
     .then((attribute) => {
     response.send(attribute);
@@ -55,12 +55,15 @@ private modifyattribute = (request: express.Request, response: express.Response)
     }
     
     private createattribute = (request: express.Request, response: express.Response) => {
-    const attributeData: Iattribute = request.body;
-    const createdattribute = new this.attribute(attributeData);
+    const attributeData: IAttribute = request.body;
+    console.log('attributeData : ',{attributeData})
+    console.log('attributeData : ',attributeData)
+    const createdattribute = new this.attribute({...attributeData});
+    console.log('res : ',{...createdattribute})
     createdattribute.save()
     .then((savedattribute) => {
-    response.send(savedattribute);
-    });
+            response.send(savedattribute);
+    }).catch(err=>console.log('error: ',err)); 
     }
     
     private deletePost = (request: express.Request, response: express.Response) => {

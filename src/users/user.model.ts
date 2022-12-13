@@ -13,10 +13,11 @@ const userSchema = new mongoose.Schema(
     email: String,
     firstName: String,
     lastName: String,
-    password: {
-      type: String,
-      get: (): undefined => undefined,
-    },
+    password:String
+    // password: {
+    //   type: String,
+    //   get: (): undefined => undefined,
+    // },
   },
   {
     toJSON: {

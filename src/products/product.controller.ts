@@ -29,7 +29,7 @@ this.router.post(this.path, validationMiddleware(productDTO),this.createproduct)
 }
 
 private getAllproducts = (request: express.Request, response: express.Response) => {
-this.product.find()
+this.product.find().populate('productgroups').populate('productbrands').populate('attributes')
 .then((products) => {
     response.send(products);
 });
@@ -56,11 +56,16 @@ private modifyproduct = (request: express.Request, response: express.Response) =
     
     private createproduct = (request: express.Request, response: express.Response) => {
     const productData: Iproduct = request.body;
-    const createdproduct = new this.product(productData);
-    createdproduct.save()
-    .then((savedproduct) => {
-    response.send(savedproduct);
-    });
+    console.log('createdproduct : ')
+    //console.log('productData : ',productData)
+    //console.log('request.body : ',request.body)
+    const createdproduct = new this.product({...productData});
+     createdproduct.save()
+     .then((savedproduct) => {
+     response.send(savedproduct);
+     });
+    
+     
     }
     
     private deletePost = (request: express.Request, response: express.Response) => {

@@ -1,6 +1,9 @@
 import {  IS_BOOLEAN, IsNumber, IsString, IsBoolean, IsArray, isArray } from 'class-validator'; 
 import { ProductStatus,ProductType } from './../utils/enums'; 
 class ProductDTO {
+    constructor(){
+
+    }
     @IsString()
     public ProductName:string;
     @IsString()
@@ -17,12 +20,12 @@ class ProductDTO {
     public IsActive:boolean;
     @IsString()
     public Description:string;
-    @IsArray()
-    public Strengths:[string];
-    @IsArray()
-    public Weaknesses:[string];
-    @IsArray()
-    public Colors:[string];
+    //@IsArray()
+    public Strengths?:[string];
+    //@IsArray()
+    public Weaknesses?:[string];
+    //@IsArray()
+    public Colors?:[string];
     @IsNumber()
     public Weight:number;
     
@@ -44,15 +47,15 @@ class ProductDTO {
     @IsString()
     public ProductVideo:string;
     
-    public Images:[string];
+    public Images?:[string];
     @IsNumber()
     public InStock:number=0;
     @IsString()
     public OrderQuantityLimit:number=1;
     @IsString()
-    public Status:ProductStatus=0;    
+    public Status:string;    
     @IsString()
-    public ProductTypeName:ProductType=0;
+    public ProductTypeName:string;
 }
  
 export default ProductDTO;

@@ -30,6 +30,9 @@ this.router.post(this.path, validationMiddleware(attributeDetailesDTO),this.crea
 
 private getAllattributeDetailess = (request: express.Request, response: express.Response) => {
 this.attributeDetailes.find()
+.populate('products')
+.populate('Attributes')
+.populate('Values')
 .then((attributeDetailess) => {
     response.send(attributeDetailess);
 });

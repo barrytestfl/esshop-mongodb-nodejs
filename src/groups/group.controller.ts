@@ -29,7 +29,7 @@ this.router.post(this.path, validationMiddleware(groupDTO),this.creategroup);
 }
 
 private getAllgroups = (request: express.Request, response: express.Response) => {
-this.group.find()
+this.group.find().populate('childs')
 .then((groups) => {
     response.send(groups);
 });
@@ -56,7 +56,9 @@ private modifygroup = (request: express.Request, response: express.Response) => 
     
     private creategroup = (request: express.Request, response: express.Response) => {
     const groupData: Igroup = request.body;
-    const createdgroup = new this.group(groupData);
+    console.log('groupData : ',groupData)
+    const createdgroup = new this.group({...groupData});
+    console.log('IGroup : ',groupData)
     createdgroup.save()
     .then((savedgroup) => {
     response.send(savedgroup);

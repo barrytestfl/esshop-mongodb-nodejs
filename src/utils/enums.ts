@@ -1,17 +1,17 @@
 export enum ProductStatus{
-    available,
-    unavailable,
-    stop_production,
+    available='available',
+    unavailable='unavailable',
+    stop_production='stop_production',
     };
 export enum ProductType{
-    type_a,
-    type_b,
-    type_c,
-    type_d
+    type_a='type_a',
+    type_b='type_b',
+    type_c='type_c',
+    type_d='type_d'
 };
 export enum ProductAttributeType{
-    singletext,
-    selection,
-    multiselection,
+    singletext='singletext',
+    selection='selection',
+    multiselection='multiselection',
      
 };    

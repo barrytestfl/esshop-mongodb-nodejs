@@ -5,13 +5,24 @@ import { ProductAttributeType } from './../utils/enums';
 const attributeSchema = new mongoose.Schema(
   { 
     Name: String,
-    Priority: String,
+    Priority: Number,
     Description: String,
-    AttributeType:ProductAttributeType,
+    AttributeType:String,
     GroupId:{ type: mongoose.Types.ObjectId, ref: 'Group' },
-  } 
+  } ,
+  {
+    toJSON: {
+      virtuals: true,
+      
+    },
+  },
 );
-
+attributeSchema.virtual('groups',{
+  ref: 'Group',
+  localField: 'GroupId',
+  foreignField: '_id', 
+  
+})
  
 
  

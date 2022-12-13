@@ -56,7 +56,7 @@ private modifyBrand = (request: express.Request, response: express.Response) => 
     
     private createBrand = (request: express.Request, response: express.Response) => {
     const brandData: IBrand = request.body;
-    const createdBrand = new this.brand(brandData);
+    const createdBrand = new this.brand({...brandData});
     createdBrand.save()
     .then((savedBrand) => {
     response.send(savedBrand);

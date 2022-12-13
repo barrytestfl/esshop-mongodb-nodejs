@@ -3,7 +3,7 @@ interface IGroup{
     GroupImage:string;
     MetaKeyword:string;
     MetaDescription:string;
-    Priority:number;
-    Parent:string
+    Priority?:number;
+    Parent?:string
 }
 export default IGroup;
